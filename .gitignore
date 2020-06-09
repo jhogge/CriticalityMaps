@@ -11,3 +11,4 @@ examples/*.html
 tests/*.yml
 *.coverage
 sphinx-build/
+JWH-temp-code/
