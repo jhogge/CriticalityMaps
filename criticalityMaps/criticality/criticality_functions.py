@@ -49,7 +49,8 @@ def _fire_criticality(wn_pickle, start, fire_duration, p_min, p_req, fire_node,
         # Get pressure at nzd nodes that fall below p_min.
         temp = results.node['pressure'].loc[_wn.options.time.duration - 3600,
                                             nzd_nodes]
-        temp = temp[temp < p_min]
+        tol = 1e-6
+        temp = temp[temp < p_min + tol]
         # Round off extra decimals
         temp = temp.round(decimals=5)
         # Remove nodes that are below pressure threshold in base case.
@@ -102,7 +103,8 @@ def _pipe_criticality(wn_pickle, start, break_duration, p_min, p_req,
         temp = results.node['pressure'].loc[start:
                                             _wn.options.time.duration,
                                             nzd_nodes]
-        temp = temp[temp < p_min]
+        tol = 1e-6
+        temp = temp[temp < p_min + tol]
         # Round off extra decimals
         temp = temp.round(decimals=5)
         # Remove nodes that are below pressure threshold in base case.
@@ -196,8 +198,8 @@ def _segment_criticality(wn_pickle, segment, link_segments, node_segments,
         temp = results.node['pressure'].loc[start:
                                             _wn.options.time.duration,
                                             nzd_nodes]
-        
-        temp = temp[temp < p_min]
+        tol = 1e-6
+        temp = temp[temp < p_min + tol]
         # Round off extra decimals
         temp = temp.round(decimals=5)
         
