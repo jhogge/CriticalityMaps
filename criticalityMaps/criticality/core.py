@@ -481,7 +481,7 @@ def segment_criticality_analysis(wn, link_segments, node_segments, valve_layer,
     else:
         # Define arguments for segment analysis.
         result = []
-        for segment in range(n_segments):
+        for segment in range(1, n_segments+1):
             result.append(_segment_criticality('./_wn.pickle', segment,
                                                link_segments, node_segments,
                                                nodes_below_pmin, nzd_nodes,
@@ -531,7 +531,7 @@ def process_criticality(wn, summary_file, output_dir, pop=None,
 
     """
     # Set some local parameters.
-    cmap = wntr.graphics.color.custom_colormap(numcolors=2,
+    cmap = wntr.graphics.color.custom_colormap(N=2,
                                                colors=['gray', 'gray'],
                                                name='custom')
     fig_x = 6
